@@ -15,3 +15,5 @@ dependencies = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/dao","src/entity","src/utils","src/exception"]
+
+

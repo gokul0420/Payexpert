@@ -1,5 +1,5 @@
 import mysql.connector
-from entity.tax import tax
+from entity.tax import Tax
 from exception.employee_not_found_exception import EmployeeNotFoundException
 from exception.tax_calculation_exception import TaxCalculationException
 

@@ -9,12 +9,12 @@ from exception.financial_record_exception import FinancialRecordException
 from exception.invalid_input_exception import InvalidInputException
 from exception.payroll_generation_exception import PayrollGenerationException
 from exception.tax_calculation_exception import TaxCalculationException
-from utils.db_conn_util import DBConnUtil
+from utils.db_conn_util import DbConnUtil
 
 
 def main():
     try:
-        conn=DBConnUtil.get_connection()
+        conn=DbConnUtil.get_connection()
         print("Connected to database successfully")
 
         employee_service=EmployeeService(conn)

@@ -1,7 +1,7 @@
 import mysql.connector
-from entity.finance_record import FinanceRecord
+from entity.financial_record import FinancialRecord
 from exception.employee_not_found_exception import EmployeeNotFoundException
-from exception.finance_record_exception import FinanceRecordException
+from exception.financial_record_exception import FinancialRecordException
 
 
 class FinancialRecordService:
@@ -12,9 +12,9 @@ class FinancialRecordService:
         try:
             cur=self.conn.cursor()
             cur.execute("select employee_id from employees where employee_id=%s",(employee_id,))
-            if not curr.fetchone():
+            if not cur.fetchone():
                 raise EmployeeNotFoundException (f"Employee with ID{employee_id} not found")
-            curr.execute("""
+            cur.execute("""
             Insert into financial_records (employee_id,record_date,description,amount,record_type) values (%s,%s,%s,%s,%s)
             """,
             (employee_id,record_date,description,amount,record_type),)
@@ -53,6 +53,6 @@ class FinancialRecordService:
             cur.execute("select* from financial_records where record_date=%s",(record_date,))
             rows=cur.fetchall()
             cur.close()
-            return [FinancialRecords(*row) for row in rows]
+            return [FinancialRecord(*row) for row in rows]
         except mysql.connector.Error as e:
             raise Exception (f"Database Error:{e}")
